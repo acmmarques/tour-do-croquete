@@ -1,9 +1,10 @@
 <div class="d-flex flex-column align-items-center justify-content-center" style="border-bottom: 5px solid red; border-top: 5px solid red; background: peachpuff; height: 100vh">
   <h1 class="mt-4">TOUR DO CROQUETE</h1>
-    <%= link_to new_user_session_path do %>
+    <%= link_to elections_path do %>
       <div class="home-img">
         <%= image_tag 'croquete',
-        class:'w-100' %>
+        class:'w-100',
+        style: 'max-height: 500px;' %>
       </div>
     <% end %>
     <h3>Clica aí no gostoso</h3>

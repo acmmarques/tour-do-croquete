@@ -1,1 +1,5 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+This is an app created to elect the best **croquete** in Lisbon.
+
+### What is a croquete, you ask?
+
+Is one of the best - if not the best - snack in Portugal.

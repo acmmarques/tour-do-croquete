@@ -1,6 +1,13 @@
 <div class="container">
   <h1>Concursos a decorrer:</h1>
-  <% @elections.each do |election| %>
-    <%= election.name %>
-  <% end %>
+  <div class="grid-container">
+    <% @elections.each do |election| %>
+      <%= link_to election_path(election) do %>
+        <div class="election-card">
+          <h5 class="election-name"><%= election.name %></h5>
+          <div class="card-img"></div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>

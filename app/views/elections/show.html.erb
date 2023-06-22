@@ -1,2 +1,8 @@
-<h1>Elections#show</h1>
-<p>Find me in app/views/elections/show.html.erb</p>
+<div class="container">
+  <h1><%= @election.name %></h1>
+  <ul>
+    <% @election.restaurants.each do |restaurant| %>
+      <li>Croquete do <%= restaurant.name %></li>
+    <% end %>
+  </ul>
+</div>

@@ -1,0 +1,31 @@
+.card-img {
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkXxVxG_x4E9HMMRTCA7ABXRlYmhpi3ArjeA&usqp=CAU");
+  background-size: cover;
+  height: 28vh;
+  background-position: center;
+}
+
+.election-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px black solid;
+  border-radius: 10px;
+  box-shadow: darkgray 7px 9px 7px 0px;
+}
+
+.election-name {
+  padding: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:0;
+  text-decoration: none;
+  color:black
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 16px;
+}

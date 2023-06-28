@@ -10,9 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_08_152008) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_22_094214) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "elections", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_elections_on_user_id"
+  end
+
+  create_table "restaurants", force: :cascade do |t|
+    t.bigint "election_id", null: false
+    t.string "name"
+    t.string "location"
+    t.float "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["election_id"], name: "index_restaurants_on_election_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +44,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_152008) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.bigint "restaurant_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "crunchiness"
+    t.integer "flavour"
+    t.integer "appearance"
+    t.integer "meat_ratio"
+    t.integer "average"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_votes_on_restaurant_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
+  end
+
+  add_foreign_key "elections", "users"
+  add_foreign_key "restaurants", "elections"
+  add_foreign_key "votes", "restaurants"
+  add_foreign_key "votes", "users"
 end

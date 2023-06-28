@@ -2,7 +2,7 @@
   <h1><%= @election.name %></h1>
   <ul>
     <% @election.restaurants.each do |restaurant| %>
-      <li>Croquete do <%= restaurant.name %></li>
+      <li>Croquete do <%= restaurant.name %></li><%= link_to "vota", new_restaurant_vote_path(restaurant) %>
     <% end %>
   </ul>
 </div>

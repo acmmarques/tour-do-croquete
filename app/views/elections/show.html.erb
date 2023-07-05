@@ -1,8 +1,24 @@
 <div class="container">
-  <h1><%= @election.name %></h1>
+  <h1 class=""><%= @election.name %></h1>
+
+  <p><%= "Não podes votar neste concurso. Ainda não te inscreveste 🤷🏼" unless @election.user_elections.where(user: current_user).any? || @election.user == current_user %></p>
   <ul>
     <% @election.restaurants.each do |restaurant| %>
-      <li>Croquete do <%= restaurant.name %></li><%= link_to "vota", new_restaurant_vote_path(restaurant) %>
+      <li>Croquete do <%= restaurant.name %> <%= "- #{restaurant.rating}" if @election.finished%></li>
+      <% if restaurant.votes.where(user: current_user).empty? %>
+        <%= link_to "Vota", new_restaurant_vote_path(restaurant) %>
+      <% else %>
+        <%= link_to  "Editar voto", edit_restaurant_vote_path(restaurant, restaurant.votes.where(user: current_user).last) %>
+        <%= link_to  "x", restaurant_vote_path(restaurant, restaurant.votes.where(user: current_user).last),
+        data: {turbo_method: :delete, turbo_confirm: "Queres mesmo apagar este voto?"} %>
+      <% end %>
+      <hr style="width:120%; margin-left:-15%;">
     <% end %>
   </ul>
 </div>
+
+<% if @election.user == current_user %>
+  <div class="div text-center">
+    <%= link_to "Terminar #{@election.name}", results_election_path(@election)%>
+  </div>
+<% end %>

@@ -1,13 +1,21 @@
-<div class="container">
+<div class="container p-3">
   <h1>Concursos a decorrer:</h1>
-  <div class="grid-container">
-    <% @elections.each do |election| %>
-      <%= link_to election_path(election) do %>
-        <div class="election-card">
-          <h5 class="election-name"><%= election.name %></h5>
-          <div class="card-img"></div>
-        </div>
-      <% end %>
+  <div class="grid-container pt-1">
+    <% @elections.each_with_index do |election, index| %>
+      <div class="grid-item">
+        <%= link_to election_path(election) do %>
+          <div class="election-card">
+            <h5 class="election-name"><%= election.name %></h5>
+            <div class="card-img" style="<%= election.photo.attached? ? "background-image:url(#{url_for election.photo})" : "" %>"></div>
+          </div>
+        <% end %>
+        <% unless election.user_elections.where(user: current_user).any? || election.user == current_user %>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<%=index%>">
+            inscrever-me
+          </button>
+            <%= render 'modal', election: election, index: index %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

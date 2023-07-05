@@ -1,0 +1,16 @@
+<div class="modal fade" id="Modal<%=index%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form action="/elections/<%=election.id%>/user_elections" method="post">
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password">
+
+      </div>
+      <div class="modal-footer justify-content-center">
+          <input type="submit" value="Submeter">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

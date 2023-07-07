@@ -26,6 +26,8 @@
   position: absolute;
   color: hsla(0, 0%, 0%, .7);
   -webkit-text-stroke: white 0.8px;
+  max-width: 90vw;
+  text-align: center;
 }
 
 .grid-container {

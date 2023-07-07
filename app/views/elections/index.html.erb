@@ -3,16 +3,18 @@
   <div class="grid-container pt-1">
     <% @elections.each_with_index do |election, index| %>
       <div class="grid-item">
-        <%= link_to election_path(election) do %>
-          <div class="election-card">
-            <h5 class="election-name"><%= election.name %></h5>
-            <div class="card-img" style="<%= election.photo.attached? ? "background-image:url(#{url_for election.photo})" : "" %>"></div>
-          </div>
-        <% end %>
-        <% unless election.user_elections.where(user: current_user).any? || election.user == current_user %>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal<%=index%>">
-            inscrever-me
-          </button>
+        <% if election.user_elections.where(user: current_user).any? || election.user == current_user %>
+          <%= link_to election_path(election) do %>
+            <div class="election-card">
+              <h5 class="election-name"><%= election.name %></h5>
+              <div class="card-img" style="<%= election.photo.attached? ? "background-image:url(#{url_for election.photo})" : "" %>"></div>
+            </div>
+          <% end %>
+          <% else %>
+            <div class="election-card" data-bs-toggle="modal" data-bs-target="#Modal<%=index%>">
+              <h5 class="election-name"><%= election.name %></h5>
+              <div class="card-img" style="<%= election.photo.attached? ? "background-image:url(#{url_for election.photo})" : "" %>"></div>
+            </div>
             <%= render 'modal', election: election, index: index %>
         <% end %>
       </div>

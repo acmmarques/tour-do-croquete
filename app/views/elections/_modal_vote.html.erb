@@ -1,0 +1,19 @@
+<div class="modal fade" id="Modal<%=index%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <%= simple_form_for [restaurant, Vote.new] do |f| %>
+          <%= f.input :crunchiness, label: "Crocância" %>
+          <%= f.input :flavour, label: "Sabor" %>
+          <%= f.input :appearance, label: "Aspecto" %>
+          <%= f.input :meat_ratio, label: "Rácio de carne/pão" %>
+
+      </div>
+      <div class="modal-footer justify-content-center">
+
+          <%= f.submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

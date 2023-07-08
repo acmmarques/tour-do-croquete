@@ -8,6 +8,19 @@ class ElectionsController < ApplicationController
     @election = Election.find(params[:id])
   end
 
+  def edit
+    @election = Election.find(params[:id])
+  end
+
+  def update
+    @election = Election.find(params[:id])
+    if @election.update(election_params)
+      redirect_to election_path(@election)
+    else
+      render :edit
+    end
+  end
+
   def results
     @election = Election.find(params[:id])
     @restaurants = @election.restaurants
@@ -46,4 +59,7 @@ class ElectionsController < ApplicationController
     end
   end
 
+  def election_params
+    params.require(:election).permit(:name, :date, :photo)
+  end
 end

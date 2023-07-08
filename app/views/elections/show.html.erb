@@ -27,6 +27,8 @@
   <div class="div text-center">
     <%= link_to "Terminar #{@election.name}", results_election_path(@election)%>
     <br>
-    <%= link_to  "Edit", edit_election_path(@election) %>
+    <%= link_to  "Add Restaurant", new_restaurant_path %>
+    <br>
+    <%= link_to  "Edit Election", edit_election_path(@election) %>
   </div>
 <% end %>

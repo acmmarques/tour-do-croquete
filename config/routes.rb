@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       get :results
     end
   end
-  resources :restaurants, only: %i[show] do
+  resources :restaurants, only: %i[new create show] do
     resources :votes, only: %i[new create edit update destroy]
   end
 end

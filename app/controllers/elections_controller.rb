@@ -6,6 +6,7 @@ class ElectionsController < ApplicationController
 
   def show
     @election = Election.find(params[:id])
+    # redirect_to results_election_path(@election) if @election.finished
   end
 
   def edit
@@ -22,14 +23,19 @@ class ElectionsController < ApplicationController
   end
 
   def results
-    @election = Election.find(params[:id])
-    @restaurants = @election.restaurants
-    @restaurants.each do |restaurant|
-      restaurant_average(restaurant)
+    set_election
+    if current_user == @election.user
+      @election = Election.find(params[:id])
+      @restaurants = @election.restaurants
+      @restaurants.each do |restaurant|
+        restaurant_average(restaurant)
+      end
+      finish_election(@election)
+      @election.save
     end
-    finish_election(@election)
-    @election.save
-    redirect_to election_path(@election)
+    unless @election.finished
+      redirect_to election_path(@election)
+    end
   end
 
   private
@@ -57,6 +63,10 @@ class ElectionsController < ApplicationController
       restaurant.rating = ((crunchiness * 0.25) + (flavour * 0.35) + (meat_ratio * 0.15) + (appearance * 0.25)).round(2)
       restaurant.save
     end
+  end
+
+  def set_election
+    @election = Election.find(params[:id])
   end
 
   def election_params

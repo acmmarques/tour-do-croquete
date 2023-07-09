@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="title-results d-flex flex-column justify-content-center align-items-center">
+    <h1>Esta eleição terminou!</h1>
+    <h3>O Vencedor é <strong><%= @election.restaurants.order(rating: :desc).first.name %></strong></h3>
+  </div>
+  <div class="cards-container">
+    <p><%= "Não podes votar neste concurso. Ainda não te inscreveste 🤷🏼" unless @election.user_elections.where(user: current_user).any? || @election.user == current_user %></p>
+    <ol style="padding:0; margin:0">
+      <% @election.restaurants.order(rating: :desc).each_with_index do |restaurant, index| %>
+        <% if index == 0 %>
+          <div class="restaurant-card">
+            <li class="restaurant-li <%= 'winner' if index == 0 %>"
+            style="background-image: url(<%= cl_image_path restaurant.photo.key %>);">Croquete do <%= restaurant.name %></li>
+          </div>
+        <% end %>
+      <% end %>
+    </ol>
+  </div>
+
+  <h3 class="text-center mt-4"><strong>Classificação Final</strong></h3>
+  <table>
+    <tbody>
+      <% @election.restaurants.order(rating: :desc).each_with_index do |restaurant, index| %>
+        <tr>
+          <td><%= restaurant.name %></td>
+          <td class="text-center"><%= restaurant.rating %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="btn-container d-flex justify-content-center">
+  <button class="interactive-button mt-4" id="myButton">Concordas?</button>
+</div>
+
+
+<script>
+  const button = document.getElementById("myButton");
+  const sentences = [
+  "Ganda croqueteiro",
+  "UUUUUi, que croquete",
+  "Semp a pushar corquete!!",
+  "Ronaldo > Messi",
+  "Portugal > Espanha",
+  "Gyokerete = Gyokeres + croquete"
+  ];
+  button.addEventListener("click", function() {
+    if (button.classList.contains("clicked")) {
+      button.classList.remove("clicked");
+      button.innerHTML = "Concordas?";
+    }
+    else {
+      button.classList.add("clicked");
+      const randomIndex = Math.floor(Math.random() * sentences.length);
+      const randomSentence = sentences[randomIndex];
+      button.innerHTML = randomSentence;
+    }
+  });
+</script>

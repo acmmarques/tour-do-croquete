@@ -1,5 +1,6 @@
-<%= simple_form_for [restaurant, vote] do |f| %>
-  <%= f.input :crunchiness, label: "Crocância" %>
+<%= simple_form_for [election, restaurant, vote] do |f| %>
+
+  <%= f.input :crunchiness, as: :range, input_html:{ min:"0", max:"10"}%>
   <%= f.input :flavour, label: "Sabor" %>
   <%= f.input :appearance, label: "Aspecto" %>
   <%= f.input :meat_ratio, label: "Rácio de carne/pão" %>

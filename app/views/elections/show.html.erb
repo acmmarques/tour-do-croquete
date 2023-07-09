@@ -1,34 +1,52 @@
 <div class="container">
-  <h1 class=""><%= @election.name %></h1>
-
-  <p><%= "Não podes votar neste concurso. Ainda não te inscreveste 🤷🏼" unless @election.user_elections.where(user: current_user).any? || @election.user == current_user %></p>
-  <ul>
-    <% @election.restaurants.each_with_index do |restaurant, index| %>
-      <div class="restaurant-card">
-        <li class="restaurant-li"
-        style="<%= "background-image: url(#{url_for restaurant.photo});" %>"
-        data-bs-toggle="modal"
-        data-bs-target="#Modal<%=index%>">Croquete do <%= restaurant.name %> <%= "- #{restaurant.rating}" if @election.finished%></li>
-        <% if restaurant.votes.where(user: current_user).empty? %>
-          <%= link_to "Vota", new_restaurant_vote_path(restaurant) %>
-        <% else %>
-          <%= link_to  "Editar voto", edit_restaurant_vote_path(restaurant, restaurant.votes.where(user: current_user).last) %>
-          <%= link_to  "x", restaurant_vote_path(restaurant, restaurant.votes.where(user: current_user).last),
-          data: {turbo_method: :delete, turbo_confirm: "Queres mesmo apagar este voto?"} %>
+  <% unless @election.finished %>
+    <h1 class="text-center"><%= @election.name %></h1>
+    <div class="cards-container">
+      <p><%= "Não podes votar neste concurso. Ainda não te inscreveste 🤷🏼" unless @election.user_elections.where(user: current_user).any? || @election.user == current_user %></p>
+      <ul style="padding:0; margin:0">
+        <% @election.restaurants.each_with_index do |restaurant, index| %>
+          <div class="restaurant-card">
+            <li class="restaurant-li"
+            style="background-image: url(<%= cl_image_path restaurant.photo.key %>);"
+            data-bs-toggle="modal"
+            <% if restaurant.votes.where(user: current_user).empty? %>
+            data-bs-target="#Modal<%=index%>"
+            <% end %>>Croquete do <%= restaurant.name %></li>
+            <% unless restaurant.votes.where(user: current_user).empty? %>
+              <div class="vote-options">
+                <%= link_to  "Editar | ", edit_election_restaurant_vote_path(restaurant.election, restaurant, restaurant.votes.where(user: current_user).last) %>
+                <%= link_to  "| Apagar", election_restaurant_vote_path(restaurant.election, restaurant, restaurant.votes.where(user: current_user).last),
+                data: {turbo_method: :delete, turbo_confirm: "Queres mesmo apagar este voto?"} %>
+              </div>
+            <% end %>
+            <hr style="width:120%; margin-left:-15%;">
+          </div>
+            <%= render 'modal_vote', election: restaurant.election, restaurant: restaurant, index: index %>
         <% end %>
-        <%= render 'modal_vote', restaurant: restaurant, index: index %>
-        <hr style="width:120%; margin-left:-15%;">
-      </div>
-    <% end %>
-  </ul>
+      </ul>
+    </div>
+  <% else %>
+    <div class="finished-election-container container d-flex flex-column align-items-center">
+      <h1 class="text-center"><%= @election.name %> já terminou!</h1>
+      <br>
+      <h3>Checka aqui os resultados</h3>
+      <br>
+      <%= link_to "CHECKAR", results_election_path(@election), class:"btn btn-primary mb-3" %>
+      <br>
+    </div>
+  <% end %>
 </div>
 
 <% if @election.user == current_user %>
   <div class="div text-center">
-    <%= link_to "Terminar #{@election.name}", results_election_path(@election)%>
-    <br>
-    <%= link_to  "Add Restaurant", new_restaurant_path %>
-    <br>
-    <%= link_to  "Edit Election", edit_election_path(@election) %>
+    <div class="mb-3">
+      <%= link_to  "Add Restaurant", new_election_restaurant_path(@election) %>
+    </div>
+    <div class="mb-3">
+      <a href="/elections/<%=@election.id%>/results" onclick="return confirm('Queres mesmo terminar esta eleição?')">Terminar <%= @election.name %></a>
+    </div>
+    <div>
+      <%= link_to  "Edit Election", edit_election_path(@election)%>
+    </div>
   </div>
 <% end %>

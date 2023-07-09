@@ -4,10 +4,31 @@
 .restaurant-li{
   background-position: center;
   background-size: cover;
-  position: absolute;
-  left: 0;
-  width: 80vw;
-  height: 10vh;
+  font-size: xx-large;
+  // font-weight: 900;
+  width: 100%;
+  height: 14vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
   margin-top: 10px;
   color: white;
+  -webkit-text-stroke: black 0.4px;
+  border-radius: 10px;
+  list-style-type: none;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+.vote-options{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.winner{
+  outline: 4px solid;
+  outline-color: #12ce12;
+  outline-style: solid;
+  border-radius: 10px;
 }

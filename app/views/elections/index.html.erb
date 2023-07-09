@@ -1,7 +1,7 @@
 <div class="container p-3">
   <h1>Concursos a decorrer:</h1>
   <div class="grid-container pt-1">
-    <% @elections.each_with_index do |election, index| %>
+    <% @elections.order(created_at: :asc).each_with_index do |election, index| %>
       <div class="grid-item">
         <% if election.user_elections.where(user: current_user).any? || election.user == current_user %>
           <%= link_to election_path(election) do %>

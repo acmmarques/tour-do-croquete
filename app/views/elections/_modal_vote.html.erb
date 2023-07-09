@@ -2,18 +2,17 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body">
-        <%= simple_form_for [restaurant, Vote.new] do |f| %>
-          <%= f.input :crunchiness, label: "Crocância" %>
-          <%= f.input :flavour, label: "Sabor" %>
-          <%= f.input :appearance, label: "Aspecto" %>
-          <%= f.input :meat_ratio, label: "Rácio de carne/pão" %>
-
+        <%= simple_form_for [election, restaurant, Vote.new] do |f| %>
+          <%= f.input :crunchiness, label: "Crocância", as: :range, input_html:{ min:"0", max:"10"}%>
+          <%= f.input :flavour, label: "Sabor", as: :range, input_html:{ min:"0", max:"10"}%>
+          <%= f.input :appearance, label: "Aspecto", as: :range, input_html:{ min:"0", max:"10"}%>
+          <%= f.input :meat_ratio, label: "Rácio de carne/pão", as: :range, input_html:{ min:"0", max:"10"}%>
+        <div class="d-flex justify-content-center">
+          <%= f.submit "Vota" %>
+          <% end %>
+        </div>
       </div>
-      <div class="modal-footer justify-content-center">
 
-          <%= f.submit %>
-        <% end %>
-      </div>
     </div>
   </div>
 </div>

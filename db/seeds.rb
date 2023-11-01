@@ -25,3 +25,4 @@ Election.create(name:"Tour do Croquete Veggie", user: user, password:"corquete")
 Election.create(name:"Melhor Baguete de Delícias da Linha de Sintra", user: user, password:"baguete")
 Election.create(name:"Melhor Bolo de Bolacha de Arraiolos", user: user, password:"bolacha")
 puts "hello"
+puts "..."

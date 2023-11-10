@@ -8,21 +8,10 @@
 
 puts "Creating users..."
 user = User.create(email: "andre@gmail.com", password: "123456")
-User.create(email: "alba@gmail.com", password: "123456")
-User.create(email: "afonso@gmail.com", password: "123456")
-User.create(email: "sara@gmail.com", password: "123456")
-User.create(email: "jonazizov.valenca@gmail.com", password: "123456")
-User.create(email: "samuel.vandeven@gmail.com", password: "123456")
-User.create(email: "zoe.vanperlstein1@gmail.com", password: "123456")
-User.create(email: "vrmcardoso@gmail.com", password: "123456")
-User.create(email: "raimundo.henriques@gmail.com", password: "123456")
-
-
 
 puts "Creating elections..."
 Election.create(name:"Tour do Croquete", user: user, password:"corquete")
 Election.create(name:"Tour do Croquete Veggie", user: user, password:"corquete")
-Election.create(name:"Melhor Baguete de Delícias da Linha de Sintra", user: user, password:"baguete")
-Election.create(name:"Melhor Bolo de Bolacha de Arraiolos", user: user, password:"bolacha")
+Election.create(name:"Tour do Rissol", user: user, password:"rissol")
 puts "hello"
 puts "..."

@@ -30,31 +30,6 @@
   </table>
 </div>
 
-<div class="btn-container d-flex justify-content-center">
-  <button class="interactive-button mt-4" id="myButton">Concordas?</button>
+<div class="btn-container d-flex justify-content-center" data-controller="change-button">
+  <button class="interactive-button mt-4" id="myButton" data-action="click->change-button#fire">Concordas?</button>
 </div>
-
-
-<script>
-  const button = document.getElementById("myButton");
-  const sentences = [
-  "Ganda croqueteiro",
-  "UUUUUi, que croquete",
-  "Semp a pushar corquete!!",
-  "Ronaldo > Messi",
-  "Portugal > Espanha",
-  "Gyokerete = Gyokeres + croquete"
-  ];
-  button.addEventListener("click", function() {
-    if (button.classList.contains("clicked")) {
-      button.classList.remove("clicked");
-      button.innerHTML = "Concordas?";
-    }
-    else {
-      button.classList.add("clicked");
-      const randomIndex = Math.floor(Math.random() * sentences.length);
-      const randomSentence = sentences[randomIndex];
-      button.innerHTML = randomSentence;
-    }
-  });
-</script>

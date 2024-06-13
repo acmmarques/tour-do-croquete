@@ -1,0 +1,44 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 35vw;
+  background: white;
+  padding: 2vw;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 10px 50px 0px rgba(0,0,0,0.1);
+  border-radius: 1rem;
+}
+
+
+.page-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.form-inputs{
+  width: 25vw;
+  border-radius: 10px;
+}
+
+
+.button-actions{
+  width: 25vw;
+  background-color: #55AD9B;
+  border-radius: 10px;
+  color:white;
+}
+
+
+.button-actions:hover{
+  color: #55AD9B;
+  background-color: #FFF5E1;
+}
+
+
+.form-inputs-data{
+ border-radius: 10px;
+
+}

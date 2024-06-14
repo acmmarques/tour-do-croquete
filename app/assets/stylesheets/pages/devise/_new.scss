@@ -23,10 +23,6 @@
   border-radius: 10px;
 }
 
-
-
-
-
 .form-inputs-data{
   border-radius: 10px;
 }
@@ -47,4 +43,20 @@
     background-color: #55AD9B;
 
   color:white;
+  }
+
+
+
+  @media(max-width: 992px) {
+    .form-container {
+      width: 80vw;
+      padding: 2vw;
+    }
+  }
+
+  @media(max-width: 768px) {
+      .form-container {
+        width: 80vw;
+        padding: 2vw;
+      }
   }

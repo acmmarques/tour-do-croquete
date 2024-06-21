@@ -1,27 +1,22 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
+<div class="navbar ">
+  <div class="flex-1">
     <%= link_to elections_path, class: "navbar-brand" do %>
-      <img src="https://res.cloudinary.com/db80w7hs9/image/upload/v1688815110/croquete_icon_lcm82f.png">
+      <%= image_tag 'logo.png', class:"navbar-logo" %>
+      <div class="flex-1 flex items-center">
+        <p class="btn btn-ghost text-l flex items-end text-bold text-[#55ad9b]">Tour do Croquete</p>
+      </div>
     <% end %>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-
+  </div>
+  <div class="flex-none">
+    <ul class="navbar-nav me-auto">
+      <% if user_signed_in? %>
         <li class="nav-item dropdown">
-          <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-link nav-link" do %>
+          <%= button_to destroy_user_session_path, method: :delete, class: "btn btn-link nav-link" do %>
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
           <% end %>
         </li>
-
-        <% else %>
+      <% else %>
         <% end %>
-      </ul>
-    </div>
+    </ul>
   </div>
 </div>

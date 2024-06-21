@@ -1,5 +1,5 @@
 <div class="container p-3">
-  <h1>Concursos a decorrer:</h1>
+  <h1 class="text-2xl text-[#55AD9B]">Concursos a decorrer:</h1>
   <div class="grid-container pt-1">
     <% @elections.order(created_at: :asc).each_with_index do |election, index| %>
       <div class="grid-item">

@@ -3,11 +3,19 @@
   <head>
     <title>Tour Do Croquete</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/06cc570cb5.js" crossorigin="anonymous"></script>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%
+=begin%>
+ <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+<%
+=end%>
   </head>
 
   <body>

@@ -5,16 +5,20 @@
 
 // External libraries
 @import "bootstrap/scss/bootstrap";
+
 @import "font-awesome";
 
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "pages/devise/new";
+
 
 body {
   height: 100vh;
-  background: hsla(40, 94%, 74%, 1);
-  background: linear-gradient(135deg, hsla(40, 94%, 74%, 1) 0%, hsla(60, 89%, 72%, 1) 100%);
-  background: -moz-linear-gradient(135deg, hsla(40, 94%, 74%, 1) 0%, hsla(60, 89%, 72%, 1) 100%);
-  background: -webkit-linear-gradient(135deg, hsla(40, 94%, 74%, 1) 0%, hsla(60, 89%, 72%, 1) 100%);
+  background: #FFF5E1;
+
+  // background: -moz-linear-gradient(135deg, hsla(40, 94%, 74%, 1) 0%, hsla(60, 89%, 72%, 1) 100%);
+  // background: -webkit-linear-gradient(135deg, hsla(40, 94%, 74%, 1) 0%, hsla(60, 89%, 72%, 1) 100%);
 }
+
